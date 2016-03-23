@@ -8,11 +8,11 @@
             <div class="col-xs-12">
                 <div class="box">
                  <div class="box-header">
-                  <h3 class="box-title">Master Data Satuan Kerja     </div><!-- /.box-header -->
+                  <h3 class="box-title">Master Data subbag    </div><!-- /.box-header -->
          
                           
                    
-                 <button  class="btn btn-info btn-lg"onclick="add_satker()"><i class="glyphicon glyphicon-plus"></i> Tambah Data Satker</button></h3>
+                 <button  class="btn btn-info btn-lg"onclick="add_satker()"><i class="glyphicon glyphicon-plus"></i> Tambah Data Sub.Bagian</button></h3>
                  
                      <div class="box-body">
               
@@ -20,16 +20,11 @@
     <table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
       <thead>
         <tr>
-          <th>No Satker</th>
-         
           <th>Satker</th>
- <th>Kode</th>
-          <th>PPK</th>
-          <th>Bendahara</th>
-          <th>Tanggal / No. Dipa</th>
-          <th>Kop PPK</th>
-          
-      
+          <th>No.Subbag</th>
+          <th>Nama Sub.Bag</th>
+          <th>Ka. Sub Bagian</th>
+        
          
 
           <th style="width:125px;">Action</th>
@@ -55,7 +50,7 @@
         
         // Load data for the table's content from an Ajax source
         "ajax": {
-            "url": "<?php echo site_url('satker/ajax_list')?>",
+            "url": "<?php echo site_url('subbagian/ajax_list')?>",
             "type": "POST"
         },
 
@@ -75,30 +70,28 @@
       save_method = 'add';
       $('#form')[0].reset(); // reset form on modals
       $('#modal_form').modal('show'); // show bootstrap modal
-      $('.modal-title').text('Add Satker'); // Set Title to Bootstrap modal title
+      $('.modal-title').text('Tambah Data Sub. Bagian'); // Set Title to Bootstrap modal title
     }
 
-    function edit_satker(idsatker)
+    function edit_satker(id)
     {
       save_method = 'update';
       $('#form')[0].reset(); // reset form on modals
 
       //Ajax Load data from ajax
       $.ajax({
-        url : "<?php echo site_url('satker/ajax_edit/')?>/" + idsatker,
+        url : "<?php echo site_url('subbagian/ajax_edit/')?>/" + id,
         type: "GET",
         dataType: "JSON",
         success: function(data)
         {
            
-            $('[name="idsatker"]').val(data.idsatker);
-            $('[name="satker"]').val(data.satker);
-            $('[name="ppk_golongan_id"]').val(data.ppk_golongan_id);
-            $('[name="bendahara_pegawai_id"]').val(data.bendahara_pegawai_id);
-            $('[name="no_dipa"]').val(data.no_dipa);
-            $('[name="kop_ppk"]').val(data.kop_ppk);
-            $('[name="kode_satker"]').val(data.kode_satker);
-           
+            $('[name="id"]').val(data.id);
+            $('[name="satker_id"]').val(data.satker_id);
+            $('[name="idsubbag"]').val(data.idsubbag);
+            $('[name="subbag"]').val(data.subbag);
+       
+          
             
             $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
             $('.modal-title').text('Edit Satker'); // Set title to Bootstrap modal title
@@ -151,11 +144,11 @@
       var url;
       if(save_method == 'add') 
       {
-        url = "<?php echo site_url('satker/ajax_add')?>";
+        url = "<?php echo site_url('subbagian/ajax_add')?>";
       }
       else
       {
-        url = "<?php echo site_url('satker/ajax_update')?>";
+        url = "<?php echo site_url('subbagian/ajax_update')?>";
       }
 
        // ajax adding data to database
@@ -177,13 +170,13 @@
         });
     }
 
-    function delete_satker(idsatker)
+    function delete_satker(id)
     {
       if(confirm('Are you sure delete this data?'))
       {
         // ajax delete data to database
           $.ajax({
-            url : "<?php echo site_url('satker/ajax_delete')?>/"+idsatker,
+            url : "<?php echo site_url('subbagian/ajax_delete')?>/"+id,
             type: "POST",
             dataType: "JSON",
             success: function(data)
@@ -209,71 +202,47 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h3 class="modal-title">Form Data Satker</h3>
+        <h3 class="modal-title">Form Data Sub. Bagian</h3>
       </div>
       <div class="modal-body form">
         <form action="#" id="form" class="form-horizontal">
             <div class="form-body">
+           <input type="hidden" value="" name="id"/> 
+                <div class="form-group">
+                                                          <label class="control-label col-md-3">Satker</label>
+                                                          <div class="col-md-9">
+                                     <select name="satker_id" class="form-control" id="chosen_select">
+			<option>- Pilih Satker -</option>
+			<?php foreach($showsatker as $satker){
+				echo '<option value="'.$satker->idsatker.'">'.$satker->satker.'</option>';
+			} ?>
+		</select>
+                                                          </div>
+                                                        </div> 
             <div class="form-group">
-              <label class="control-label col-md-3">No Satker</label>
+              <label class="control-label col-md-3">No. Sub.Bagian</label>
               <div class="col-md-9">
-                <input name="idsatker" placeholder="Masukkan ID Satker" class="form-control" type="text">
+                <input name="idsubbag" placeholder="Masukkan No. Sub Bagian" class="form-control" type="text">
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-md-3">Kode Satker</label>
+              <label class="control-label col-md-3">Sub. Bagian</label>
               <div class="col-md-9">
-                <input name="kode_satker" placeholder="Masukkan Kode Satker. Ex : Setjen : 1" class="form-control" type="text">
+                  <textarea name="subbag" placeholder="Nama Sub.Bagian " class="form-control" type="text"> </textarea>
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-md-3">Satker</label>
-              <div class="col-md-9">
-                <input name="satker" placeholder="Masukkan Golongan" class="form-control" type="text">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="control-label col-md-3">Tanggal / No. Dipa</label>
-              <div class="col-md-9">
-                <input name="no_dipa" placeholder="Contoh : 14 November 2014/ 025.01.2.648652/2015 " class="form-control" type="text">
-              </div>
-            </div>
-             <div class="form-group">
-              <label class="control-label col-md-3">Kop PPK</label>
-              <div class="col-md-9">
-                <input name="kop_ppk" placeholder="Masukkan KOP PPK " class="form-control" type="text">
-              </div>
-            </div>
-                 <div class="form-group">
-              <label class="control-label col-md-3">Pejabat Pembuat Komitmen</label>
-              <div class="col-md-9">
-                <select name="ppk_golongan_id" class="form-control">
-                                            
-                                    <?php foreach($showpegawai as $each){ ?>
-                                        <option value="<?php echo $each->id; ?>">
-                                        <?php echo $each->nama; ?> </option>;
-                                    <?php } ?>
-                                </select>
-              </div>
-            </div>
-                                                
-             <div class="form-group">
-              <label class="control-label col-md-3">Bendahara </label>
-              <div class="col-md-9">
-                <select name="bendahara_pegawai_id" class="form-control">
-                                            
-                                    <?php foreach($showpegawai as $each){ ?>
-                                        <option value="<?php echo $each->id; ?>">
-                                        <?php echo $each->nama; ?> </option>;
-                                    <?php } ?>
-                                </select>
-              </div>
-            </div>
-                        
-           
-           
-           
-        </form>
+                                                          <label class="control-label col-md-3">Kasubbag</label>
+                                                          <div class="col-md-9">
+                                     <select name="kasubbag_pegawai_id" class="form-control" id="chosen_select">
+			<option>- Pilih Ka.Sub Bagian -</option>
+			<?php foreach($showpegawai as $satker){
+				echo '<option value="'.$satker->id.'">'.$satker->nama.'</option>';
+			} ?>
+		</select>
+                                                          </div>
+                                                        </div> 
+          </form>
           </div>
           <div class="modal-footer">
             <button type="button" id="btnSave" onclick="save()" class="btn btn-primary">Save</button>
@@ -317,7 +286,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h3 class="modal-title">Form Data Satker</h3>
+        <h3 class="modal-title">Form Data Sub Bagian</h3>
       </div>
       <div class="modal-body form">
         <form action="#" id="form" class="form-horizontal">

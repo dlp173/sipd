@@ -64,7 +64,7 @@
           
              <div class="col-xs-12">
            
-               Lampiran SPD Nomor  : <?php echo $data->no_spd;?><br>
+               Lampiran SPD Nomor  : Kw.29.<?php echo $data->kode_satker?>/<?php echo $data->idsubbag?>/Ku.01.02/<?php echo $data->no_spd;?>/2016<br>
        
          Tanggal  : <?php echo tgl_indo($data->tgl_pergi);?> s.d <?php echo tgl_indo($data->tgl_pulang);?>              
     

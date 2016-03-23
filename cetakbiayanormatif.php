@@ -223,7 +223,7 @@ foreach ($printnormative as $row) {
               <br>
               <br>
               <br>
-           <small><span class="small">  Yang Memerintahkan Perjalanan Dinas<br>    <b>Drs. H.Andi M.Darlis, M.Pd.I</b><br>
+           <small><span class="small"> <b>Drs. H.Andi M.Darlis, M.Pd.I</b><br>
               NIP. 196012271990011001</span> </small>
             </div><!-- /.col -->
           </div><!-- /.row -->

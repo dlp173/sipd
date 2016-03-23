@@ -106,7 +106,8 @@ if ($data->statusbiaya == 0){
  
           <a href = '../../printsurat/printkwitansi/$data->id' target='_blank' class='btn btn-primary'> <iclass='glyphicon glyphicon-print'></i> Print Kuitansi</a>
           
-          
+           <a href = '../../printsurat/printsptjb/$data->id' target='_blank' class='btn btn-primary'> <i class='glyphicon glyphicon-print'></i> Print SPTJB</a> 
+         
            <button class='btn btn-primary' onclick='add_nospd($data->id)'><i class='glyphicon glyphicon-plus'></i>Input No. SPTJB</button>";
     
     

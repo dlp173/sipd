@@ -41,29 +41,39 @@
         <section class="invoice">
         
         <h3 style="text-align:center" > SURAT PERJALANAN DINAS  (SPD)</h3>
-        Kementerian Negara / Lembaga Kanwil Kementerian Agama  Provinsi Kepulauan Bangka Belitung  </br>
+      
        
 
-<div class="col-xs-3">
-              
+<div class="col-xs-6">
+    <p style="text-align:left"> <br>
+        Kementerian Negara / Lembaga <br> Kanwil Kementerian Agama  Provinsi Kepulauan Bangka Belitung    
+     </p>
             </div><!-- /.col -->
-            <div class="col-xs-3">
-              
-            </div><!-- /.col -->
+           
 <div class="col-xs-6">
                                     <p style="text-align:left">
     <br>
         Lembar ke : I.II.III.IV.V.VI.VII <br> 
         Kode no :  
-          <?php
+           <?php
 
                     foreach ($sql1 as $data) {
 
                                     ?>
   <?php }?> <br>
-        Nomor : <?php echo $data->no_spd;?>
-        
-    
+        Nomor : Kw.29.<?php echo $data->kode_satker?>/<?php echo $data->idsubbag?>/Ku.01.2/
+            <?php 
+            
+       if ($data->no_spd == ''){
+    echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp             ";
+
+            
+       }else {
+           
+      echo  $data->no_spd;
+           
+       }
+            ?>/2016 
  </p>
  </div>
     <table class="table table-bordered" border ="1em">
@@ -74,7 +84,7 @@
                   <tr> 
                       <td><small>1</small></td>
                         <td><small>Pejabat Pembuat Komitmen</small></td>
-                        <td><small><?php echo $data->namaprogram;?></small></td>
+                        <td><small><?php echo $data->kop_ppk;?></small></td>
                   </tr>
                   <tr>
                       <td><small>2</small></td>
@@ -103,7 +113,19 @@
                       
                       <p>   <small> <?php echo $datas->golongan ?> | <?php echo $datas->gol_ruang;?></small> </p> 
                            <p><small> <?php echo $datas->jabatan?> </small></p>
-                            <p><small>D</small></p>
+                          
+                                  <p><small>
+                                      
+                                              <?php
+
+                    foreach ($sql1 as $data) {
+
+                                    ?>
+  <?php }?> 
+                                      
+                                      <?php echo $data->tingkatbiaya?></small></p>
+                      
+                      
                       
                       
                       
@@ -167,7 +189,7 @@
        
             
 
-       <?php echo $data2->nama;?>  | <?php echo 'Nip'.$data2->nip;?> <br> <?php }?> </td>
+       <?php echo $data2->nama;?>  | <?php echo 'Nip'.$data2->nip;?> <br> <br>s<?php }?> </td>
     </small>
     <td>
    
@@ -195,12 +217,23 @@
                    <tr>
                       <td><small>9<small></td>
                       <td> <small> <p> Pembebanan Negara </p>
-                           <p> a. Instansi </p>
-                         <p>   b. Akun </p>
+                              <p> a. Instansi </p>  <br>
+                              <p> b. Akun </p>
                         </small>  
                           
                       </td>
-                      <td> <small><br>Kanwil Kementrian Agama PRovinsi Kep. Bangka Belitung</small></td>
+                      <td>
+                          <small>
+                          <p>&nbsp</p>
+                          <p>Kanwil Kementrian Agama Provinsi Kep. Bangka Belitung </p>
+                    <?php
+
+                    foreach ($sql1 as $data) {
+
+                                    ?> <p>
+  <?php }?> <p><?php echo substr($data->program_id,0,4);?>.<?php echo substr($data->program_id,4,8);?>. <?php echo $data->idkegiatans?> </p>
+                        
+                     </p></small>   </td>
                   </tr>
                    <tr>
                       <td><small>10</small></td>
@@ -223,7 +256,18 @@
     <br>
 
     <small>Dikeluarkan di Pangkalpinang, <?php echo tgl_indo(date("Y-m-d"));?>  <br> 
-     <?php
+    Pejabat Pembuatan Komitmen, <br><br><br> <br><br><br>
+    <?php 
+
+foreach ($details_by_id as $ppk ) {
+  echo $ppk->namappk;
+  echo "<br>";
+  echo "NIP.".$ppk->nip;
+  # code...
+}
+
+?>
+    <!-- <?php
 
                     foreach ($printperintah as $pejabat) {
                     }
@@ -232,12 +276,12 @@
         <br>
 <br>
 <br>
-   <?php echo "$pejabat->jabatan";
+  <!-- <?php echo "$pejabat->jabatan";
    ?>  <br>  <?php echo "$pejabat->pejabat"; 
 
 ?> <br>   NIP.  <?php echo "$pejabat->nippejabat";
 
-?> </small>
+?> --> </small> 
 
   
 

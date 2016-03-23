@@ -29,7 +29,7 @@
           
              <div class="col-xs-12">
            
-                    <i></i> <b>Lampiran SPD Nomor  : <?php echo $data->no_lampiran;?></b></p>
+                    <i></i> <b>Lampiran SPD Nomor  : Kw.29.<?php echo $data->kode_satker?>/<?php echo $data->idsubbag?>/Ku.01.02/<?php echo $data->no_spd;?>/2016</b></p>
        
           
               
@@ -352,7 +352,7 @@ foreach ($suratid as $dataa)
           <div class="row no-print">
             <div class="col-xs-12">
               <a href="<?php echo base_url('index.php/printsurat/prints/' .$data->id.'/'.$data->idpegawai)?>" target="_blank" class="btn btn-primary"><i class="fa fa-print"></i> Print Rincian Biaya</a>
-               
+
              <?php 
              // if ($data->totalbiayataksi != 0){
                   if ($data->totalbiayataksi != 0 || $data->transportluarkotamasihbangka !=0){ 

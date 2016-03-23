@@ -106,7 +106,18 @@ if ($data->no_spd == ''){
     echo "
 
      <button class='btn btn-success' onclick='add_nospd($data->id)'><i class='glyphicon glyphicon-plus'></i>Input No SPD</button>
- 
+  <div class='btn-group'>
+  <button type='button' class='btn btn-success dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+   <i class='glyphicon glyphicon-print'></i> Print SPD <span class='caret'></span>
+  </button>
+  <ul class='dropdown-menu'>
+   <li><a href='../../printsurat/viewcetakspd/$data->id'>Print SPD Hal. 1</a></li>
+    
+    <li role='separator' class='divider'></li>
+       <li><a href='../../printsurat/cetakspd2/$data->id'>Print SPD Hal. 2</a></li>
+  </ul>
+   
+</div>
 
 
 

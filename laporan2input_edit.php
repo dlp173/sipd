@@ -49,6 +49,7 @@ foreach ($sqlsurattugas as $data)
                       Tanggal Berangkat : <?php echo tgl_indo($data->tgl_pergi);?> <br>
                       Tanggal Pulang  : <?php echo tgl_indo($data->tgl_pulang);?> <br>
                       Lama Perjalanan : <?php echo $data->hari;?> Hari
+                      
                   </tr>
                 
                  
@@ -62,10 +63,6 @@ foreach ($sqlsurattugas as $data)
      </div>
   
   
-                                                         
-                                                              
-                                                          
-
                 
 
   
@@ -73,6 +70,20 @@ foreach ($sqlsurattugas as $data)
 
  
    <div class="modal-body form">
+       
+                                                         
+      <?php
+
+       $i=1;
+foreach ($laporan as $datalaporan) 
+    
+{
+  ?>
+        
+
+<?php }?>
+
+
        <form action="#" id="form" class="form-horizontal">   <div class="panel panel-default"> 
         <div class="panel-heading">
          Pejabat yang berwenang : 
@@ -100,7 +111,7 @@ foreach ($sqlsurattugas as $data)
                 </div><!-- /.box-header -->
                 <div class="box-body pad">
          
-                    <textarea class="textarea" name="umum" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                    <textarea class="textarea" name="umum" value="<?php echo $data->id ?>" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
           
                 </div>
               </div>

@@ -57,7 +57,7 @@
                       if ($data->laporan_id > 0){
                           
                           
-                        echo "<td><a  href = 'laporan/viewnotadinas/$data->id' class='btn btn-primary'>Cetak</a> <a  href = 'laporan/viewnotadinas/$data->id' class='btn btn-primary'>Edit</a></td>";
+                        echo "<td><a  href = 'laporan/viewnotadinas/$data->id' class='btn btn-primary' target='_blank's>Print</a> <a  href = 'laporan/ajax_edit/$data->id' class='btn btn-primary'>Edit</a></td>";
                           
                       }else {
                           

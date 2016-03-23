@@ -5,17 +5,42 @@
                    
         <section class="invoice">
         
-        <h2 style="text-align:center" > SURAT PERJALANAN DINAS  (SPD)</h2>
-        Kementerian Negara / Lembaga Kanwil Kementerian Agama  Provinsi Kepulauan Bangka Belitung  </br>
+        <h3 style="text-align:center" > SURAT PERJALANAN DINAS  (SPD)</h3>
+      
+       
+
+<div class="col-xs-6">
+    <p style="text-align:left"> <br>
+        Kementerian Negara / Lembaga <br> Kanwil Kementerian Agama  <br>Provinsi Kepulauan Bangka Belitung    
+     </p>
+            </div><!-- /.col -->
+           
+<div class="col-xs-6">
+                                    <p style="text-align:left">
+    <br>
         Lembar ke : I.II.III.IV.V.VI.VII <br> 
         Kode no :  
-          <?php
+           <?php
 
                     foreach ($sql1 as $data) {
 
                                     ?>
   <?php }?> <br>
-        Nomor : <?php echo $data->no_spd;?> 
+        Nomor : Kw.29.<?php echo $data->kode_satker?>/<?php echo $data->idsubbag?>/Ku.01.2/
+            <?php 
+            
+       if ($data->no_spd == ''){
+    echo "&nbsp&nbsp&nbsp&nbsp&nbsp             ";
+
+            
+       }else {
+           
+      echo  $data->no_spd;
+           
+       }
+            ?>/2016 
+ </p>
+ </div>
              <table class="table table-bordered">
 
         <tbody>
@@ -24,7 +49,7 @@
                   <tr> 
                         <td>1</td>
                         <td> Pejabat Pembuat Komitmen</td>
-                        <td><?php echo $data->namaprogram;?></td>
+                        <td><?php echo $data->kop_ppk;?></td>
                   </tr>
                   <tr>
                       <td>2</td>
@@ -45,7 +70,7 @@
                       <td>3</td>
                       <td><p> a. Pangkat dan Golongan </p> 
                            <p> b. Jabatan / Instansi </p>
-                            <p>c. Tingkat Biaya Perjalanan Dinas </p>
+                           <p>c. Tingkat Biaya Perjalanan Dinas </p>
                         
                           
                       </td>
@@ -53,7 +78,16 @@
                       
                       <p>    <?php echo $datas->golongan ?> | <?php echo $datas->gol_ruang;?> </p> 
                            <p> <?php echo $datas->jabatan?> </p>
-                            <p>D</p>
+                                  <p><small>
+                                      
+                                              <?php
+
+                    foreach ($sql1 as $data) {
+
+                                    ?>
+  <?php }?> 
+                                      
+                                      <?php echo $data->tingkatbiaya?></small></p>
                       
                       
                       
@@ -73,7 +107,7 @@
                    <tr>
                       <td>5</td>
                       <td> Alat Angkut yang dipergunakan</td>
-                      <td> Mobil</td>
+                      <td> <?php echo $data->transport?></td>
                   </tr>
                    <tr>
                       <td>6</td>
@@ -149,7 +183,15 @@
                           
                           
                       </td>
-                      <td> <br>Kanwil Kementrian Agama PRovinsi Kep. Bangka Belitung</td>
+                      <td> <p>&nbsp </p><p>Kanwil Kementrian Agama PRovinsi Kep. Bangka Belitung </p>
+                    <?php
+
+                    foreach ($sql1 as $data) {
+
+                                    ?>
+ <?php }?> <p><?php echo substr($data->program_id,0,4);?>.<?php echo substr($data->program_id,4,8);?>. <?php echo $data->idkegiatans?> </p>
+                         
+                      </td>
                   </tr>
                    <tr>
                       <td>10</td>
@@ -173,14 +215,16 @@
                 <p style="text-align:left">
     <br>
     <br>
-    Dikeluarkan di Pangkalpinang, <?php echo tgl_indo(date("Y-m-d"));?>  <br>
-   
-<?php
+   Dikeluarkan di Pangkalpinang, <?php echo tgl_indo(date("Y-m-d"));?>  <br> 
+    Pejabat Pembuatan Komitmen, <br><br><br> <br><br><br>
+    <?php 
 
-                    foreach ($printperintah as $pejabat) {
-                    }
-                                    ?>
-<?php echo "$pejabat->pelimpahan";
+foreach ($details_by_id as $ppk ) {
+  echo $ppk->namappk;
+  echo "<br>";
+  echo "NIP.".$ppk->nip;
+  # code...
+}
 
 ?>
 <br>
@@ -188,20 +232,13 @@
 <br>
 
  
-<?php echo "$pejabat->jabatan";
 
-?>
 <br>
                       
 
-                                           <?php echo "$pejabat->pejabat";
-
-?>
+                                         
                                                               <br>
-                                                              NIP.  <?php echo "$pejabat->nippejabat"; 
-
-                                                              ?> </p>
-    
+                                                             
          
         
      

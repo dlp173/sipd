@@ -20,7 +20,7 @@ foreach ($sqlricianbiayapegawai as $data)
                      <section class="content-header">
         
         
-        
+  
        
         <section class="content-header">
                  <?php
@@ -110,7 +110,7 @@ foreach ($suratid as $dataa)
             <div class="col-sm-4 invoice-col">
               Info Kegiatan
               <address>
-                  <input name='satker_id' value="<?php echo $data->idsatker;?>" hidden="true">   
+                <input name='satker_id' value="<?php echo $data->idsatker;?>" >   
                 <input name='program_id' value="<?php echo $data->idprogram;?>" hidden="true">      
                 <input name='kegiatan_id' value="<?php echo $data->idkegiatans;?>" hidden="true">
                 <input name='subkegiatans_id' value="<?php echo $data->idkegiatan;?>"hidden="true">
@@ -135,7 +135,8 @@ foreach ($suratid as $dataa)
             </div><!-- /.col -->
             <div class="col-sm-4 invoice-col">
                 <i class="fa fa-bank"></i> No.Bukti <input name="no_bukti" size="50"><br> <br>
-                <i class="fa fa-bank"></i> Akun &nbsp &nbsp&nbsp&nbsp&nbsp <input name="akun" size="50"> 
+                <i class="fa fa-bank"></i> Akun &nbsp &nbsp&nbsp&nbsp&nbsp <input name="akun" size="50">  <br><br>
+                <i class="fa fa-bank"></i> Mata Anggaran Yang Digunakan &nbsp &nbsp&nbsp&nbsp&nbsp <input name="mataanggaran" size="30"> 
                 <input name="tgl_dibuat" hidden="true" value="<?php echo date('Y-m-d')?>"  > 
               <br>
               
@@ -206,7 +207,7 @@ foreach ($suratid as $dataa)
                       <?php 
                       // jika kotanya bangka dan tipe keigaiatan Luar kota maka biaya taxi tidak ada, ubah subkategori id 2 pada no kota_id nya menjadi dari 1 ke 2 malah nama pegawai id 1 tidak muncul
                       if
-                      ($data->idkotatujuan != 2)
+                      ($data->idkotatujuan != 2 && $data->idkotatujuan != 36 && $data->idkotatujuan != 37 && $data->idkotatujuan != 38 && $data->idkotatujuan != 39)
                       {
                           
                           echo "<tr><td>Biaya Taxi Bandara Depati Amir (PP)</td> <td> </td><td> </td> <td> <input name='totalbiayataksi' class='c9' onkeyup='hitung2();' type='number'  value=0></td>
@@ -220,21 +221,30 @@ foreach ($suratid as $dataa)
                           </tr> <tr>
                           <td>Transport $data->kotatujuan - $data->kota + Bording Pass </td><td> </td><td> </td>  <td> <input class='c8' onkeyup='hitung2();' name='biayatiketpulang' type='number'  value='0'> </td>
                        </tr>
-                      ";     
+                      ";   
+                          
                       }elseif
-                      ($data->idkotatujuan == 2 && $data->tipekegiatan == 'Luar Kota')
+                      ($data->idkotatujuan == 2 || $data->idkotatujuan == 36 || $data->idkotatujuan == 37 || $data->idkotatujuan == 38 || $data->idkotatujuan == 39 && $data->tipekegiatan == 'Luar Kota')
                       {
                           
                           echo "<input hidden ='true'class='c9'  onkeyup='hitung2();' type='number'  value=0></td>"
                           . "<input hidden ='true'class='c8'  onkeyup='hitung2();' type='number'  value=0></td>"
                           ."<input hidden ='true'class='c7'  onkeyup='hitung2();' type='number'  value=0></td>"
                                   ."<input hidden ='true'class='c10'  onkeyup='hitung2();' type='number'  value=0></td>"
-                                  . "<td>Biaya Transport Luar Kota ($data->kotatujuan)</td> <td> </td><td> </td> <td> <input class='c11' name ='transportluarkotamasihbangka' type='number' onkeyup ='hitung2();'  value=$data->biayainap></td>";
+                                  . "<td>Biaya Transport ($data->kotatujuan)</td> <td> </td><td> </td> <td> <input class='c11' name ='transportluarkotamasihbangka' type='number' onkeyup ='hitung2();'  value=0></td>";
                           
                       }
                       else if ($data->idkotatujuan == 2 && $data->tipekegiatan == 'Dalam Kota'){
                           
                           
+                          
+                         
+                          echo " <input hidden ='true'class='c9'  onkeyup='hitung2();' type='number'  value=0></td>"
+                          . "<input hidden ='true'class='c8'  onkeyup='hitung2();' type='number'  value=0></td>"
+                          ."<input hidden ='true'class='c7'  onkeyup='hitung2();' type='number'  value=0></td>"
+                                  ."<input hidden ='true'class='c10'  onkeyup='hitung2();' type='number'  value=0>
+                                  <input hidden ='true'class='c11'  onkeyup='hitung2();' type='number'  value=0></td>";
+                                 // . "<td>Biaya Transport ($data->kotatujuan)</td> <td> </td><td> </td> <td> <input class='c11' name ='transportluarkotamasihbangka' type='number' onkeyup ='hitung2();'  value=0></td>";
                           
                       }
                     
@@ -249,7 +259,7 @@ foreach ($suratid as $dataa)
                                              
                            <input hidden="true" name="biayainap_id" value="<?php echo $data->idbiaya;?>" type="text" readonly />
                             <input class="a2" name="biayainap" onkeyup="hitung2();" hidden="true" type="number"  value="<?php echo $data->biayainap;?>" readonly /> </td>
-                            <td> <input class="b2" name="hariinap" onkeyup="hitung2();"  type="number"  value=0 />  </td> 
+              <td> <input hidden="true"class="b2" name="hariinap" onkeyup="hitung2();"  type="number"  value=0 />  </td> 
                               
                             <td><input  class="c2" name="totalbiayainap"  type="number" onkeyup ="hitung2();"  value=0></td> 
                        </tr> 

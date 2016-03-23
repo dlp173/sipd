@@ -172,6 +172,9 @@
                 <li><a href="<?php echo base_url('index.php/golongan');?>"><i class="fa fa-circle-o"></i>Data Golongan</a></li>
            <!--     <li><a href="<?php echo base_url('index.php/taksi');?>"><i class="fa fa-circle-o"></i>Data Taksi</a></li>
                -->
+               
+                      <li><a href="<?php echo base_url('index.php/subbagian');?>"><i class="fa fa-circle-o"></i>Sub. Bagian</a></li>
+        
               </ul>
             </li>
                  <?php  }?>

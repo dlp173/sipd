@@ -82,8 +82,13 @@
 
 
             $("#chosen_select").change(function (){
-                var url = "<?php echo site_url('subkegiatans/add_ajax_program');?>/"+$(this).val();
-                $('#program').load(url);
+                var url = "<?php echo site_url('subkegiatans/add_ajax_subbag');?>/"+$(this).val();
+                var url1 = "<?php echo site_url('subkegiatans/add_ajax_program');?>/"+$(this).val();
+                var url2 = "<?php echo site_url('subkegiatans/add_ajax_kegiatans');?>/"+$(this).val();
+                $('#subbag').load(url);
+                $('#program').load(url1);
+                $('#kegiatans').load(url2);
+                
                 return false;
             })
 			
@@ -106,13 +111,14 @@
       save_method = 'add';
       $('#form')[0].reset(); // reset form on modals
       $('#modal_form').modal('show'); // show bootstrap modal
-      $('.modal-title').text('Add Kegiatan'); // Set Title to Bootstrap modal title
+      $('.modal-title').text('Tambah Kegiatan Perjalanan Dinas'); // Set Title to Bootstrap modal title
      $('#chosen_select').chosen({allow_single_deselect:true, width:"200px", search_contains: true});
     // $('#program').chosen({allow_single_deselect:true, width:"200px", search_contains: true});
     $('#chosen_select1').chosen({allow_single_deselect:true, width:"200px", search_contains: true});
     $('#chosen_select2').chosen({allow_single_deselect:true, width:"200px", search_contains: true});
      $('#chosen_select_program').chosen({allow_single_deselect:true, width:"400px", search_contains: true});
        $('#chosen_select_kegiatan').chosen({allow_single_deselect:true, width:"400px", search_contains: true});
+        $('#tingkatbiaya').chosen({allow_single_deselect:true, width:"200px", search_contains: true});
     //    $('#program').chosen({allow_single_deselect:true, width:"400px", search_contains: true});
        
             $('#chosen_select3').chosen({allow_single_deselect:true, width:"200px", search_contains: true});
@@ -144,7 +150,8 @@
             $('[name="namasubkegiatans"]').val(data.namasubkegiatans);
             $('[name="namaprogram"]').val(data.namaprogram);
             $('[name="namakegiatan"]').val(data.namakegiatan);
-          
+            $('[name="subbag"]').val(data.subbag);
+              $('[name="transport"]').val(data.transport);
             $('[name="tipekegiatan"]').val(data.tipekegiatan);
       //      $('[name="nominalsubkegiatans"]').val(data.nominalsubkegiatans);
             $('[name="tgl_pergi"]').val(data.tgl_pergi);
@@ -185,8 +192,9 @@
             $('#satker').html(data.satker);
             $('#namaprogram').html(data.namaprogram);
             $('#namakegiatan').html(data.namakegiatan);
-             $('#namasubkegiatan').html(data.namasubkegiatan);
+            $('#namasubkegiatan').html(data.namasubkegiatan);
             $('#tempat').html(data.tempat);
+            $('#satker1').html(data.subbag);
 
             $('#namapegawai').html(data.namapegawai);
             $('[name="id"]').val(data.id);
@@ -198,6 +206,7 @@
             $('[name="satker_id"]').val(data.satker_id);
             $('[name="no_lampiran"]').val(data.no_lampiran);
             $('[name="namasubkegiatans"]').val(data.namasubkegiatan);
+     
            
             $('[name="tipekegiatan"]').val(data.tipekegiatan);
       //      $('[name="nominalsubkegiatans"]').val(data.nominalsubkegiatans);
@@ -282,8 +291,8 @@
 
   <!-- Bootstrap modal -->
   <div class="modal fade" id="modal_form" role="dialog">
-  <div class="modal-dialog_big">
-    <div class="modal-content_big">
+  <div class="modal-dialog">
+    <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h3 class="modal-title">Form Data Sub Kegiatan</h3>
@@ -311,8 +320,8 @@
                                             <option>- Pelimpahan-</option>
                                           
                                             <option value="Kepala">Kakanwil</option>
-                                            <option value="Plh.Kepala,">Plh Kepala</option>
-                                            <option value="An,">An</option>
+                                            <option value="Plh.Kepala,">Plh.Kepala</option>
+                                            <option value="An.Kepala ">An.Kepala</option>
                                    
                                     </select>        
                                                           
@@ -366,7 +375,16 @@
                                             <?php foreach($showpegawai as $pegawai){
                                                     echo '<option value="'.$pegawai->id.'">'.$pegawai->nama.'</option>';
                                             } ?>
-                                    </select>
+                                    </select>               
+                                                  <select name="tingkatbiaya" class="form-control" id="tingkatbiaya"> Pilih TIngkat Biaya
+			<option value="-" >-- Pilih Tingkat Biaya --</option>
+                        <option value="A" > A </option>
+                        <option value="B" > B</option>
+                        <option value="C" > C</option>
+                        <option value="D" > D </option>
+                        <option value="D" > E </option>
+			
+		</select>
                                                           </div>
                                                         </div>
          
@@ -379,8 +397,37 @@
 				echo '<option value="'.$satker->idsatker.'">'.$satker->satker.'</option>';
 			} ?>
 		</select>
+                                                              
+                                                              
+                                                              
+                                                              
                                                           </div>
                                                         </div> 
+          <div class="form-group">
+                                                          <label class="control-label col-md-3">Sub.Bagian</label>
+                                                          <div class="col-md-9">
+                                       
+                                                              
+                                                             
+		<select name="subbag_id" class="form-control" id="subbag">
+			
+		</select>
+                                                              
+                                                         
+                                                          </div>
+                                                        </div> 
+           <div class="form-group">
+                                                          <label class="control-label col-md-3">Transportasi</label>
+                                                          <div class="col-md-9">
+                                     <select name="transport" class="form-control" id="chosen_select">
+			<option value="Mobil" > Mobil </option>
+                        <option value="Kapal Laut" > Kapal Laut</option>
+                        <option value="Pesawat Udara" > Pesawat Udara</option>
+			
+		</select>
+                                                          </div>
+                                                        </div> 
+           
          <!--          <div class="form-group">
                                                           <label class="control-label col-md-3">Program</label>
                                                           <div class="col-md-9">
@@ -442,7 +489,7 @@
            <div class="form-group">
               <label class="control-label col-md-3" >No Surat</label>
               <div class="col-md-9">
-                  <input name="no_lampiran" placeholder="Masukkan No kegiatan" class="form-control" rows="9">
+                  <input name="no_lampiran" placeholder="Masukkan No Surat Tugas. Contoh : KW.29.01/Kp.03.1 " class="form-control" rows="9">
                   </div>
            </div> 
            <div class="form-group">
@@ -603,6 +650,14 @@
                      
                     </tr>
                      <tr>
+  
+                      <td><p>Sub. Bagian</p></td>
+                      <td>
+                         <p id="satker1"></p>
+                      </td>
+                     
+                    </tr>
+                     <tr>
              
                       <td> <p>Program</p></td>
                       <td>
@@ -757,6 +812,36 @@
 .modal-content_big {
   height: 100%;
   border-radius: 0;
+}
+.big-box h2 {
+    text-align: center;
+    width: 100%;
+    font-size: 1.8em;
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor:pointer;
+}
+.modal-dialog {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin:0;
+}
+.modal-content {
+    height: 100%;
+    border-radius: 0;
+    color:#333;
+    overflow:auto;
+}
+.modal-title {
+    font-size: 3em;
+    font-weight: 300;
+    margin: 0 0 10px 0;
+}
+.close {
+    color:black ! important;
+    opacity:1.0;
 }
     </style>
    

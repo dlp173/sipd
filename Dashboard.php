@@ -68,7 +68,7 @@ echo $tgl;
                             
                       <div id="chart"></div>
                        
-                            <?php 
+<!--                            <?php 
         
                  $this->load->model('program_model');  
                 $this->load->helper('url');
@@ -92,10 +92,10 @@ echo $tgl;
                 </div><!-- ./box-body -->
             
               </div><!-- /.box -->
-          <div class="box">
+       <!--   <div class="box">
                 <div class="box-header">
                   <h3 class="box-title">Striped Full Width Table</h3>
-                </div><!-- /.box-header -->
+                </div><!-- /.box-headers
                 <div class="box-body no-padding">
                   <table class="table table-striped">
                     <tr>

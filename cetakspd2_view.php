@@ -26,18 +26,36 @@
                   <tr> 
              
                         <td> </td>
-                        <td>I. Berangkat dari : <br>
-                            (Tempat Kedudukan ) : <?php echo $data->kota;?> <br>
+                        <td>I. Berangkat dari :
+                             <?php echo $data->kota;?> <br>
                             Ke : <?php echo $data->namakota;?>  <br>
                             Pada Tanggal : <?php echo tgl_indo($data->tgl_pergi);?> <br>
-                            An. Kepala <br><br><br><br>
-                            Kepala Bidang <?php echo $data->namasatker?><br>
+                 <?php
+
+                    foreach ($printperintah as $pejabat) {
+                    }
+                                    ?>
+ <?php if ($pejabat->pelimpahan != 'Kepala'){
+        
+         echo $pejabat->pelimpahan;
+         echo "<br>";
+         echo $pejabat->jabatan;
+    } else if ($pejabat->pelimpahan === 'Kepala'){
+        echo $pejabat->pelimpahan;
+       
+    }
+    ?>
+<br>
+<br>
+     <br>  <?php echo "$pejabat->pejabat"; 
+
+?> <br>   NIP.  <?php echo "$pejabat->nippejabat";
+
+?> 
+
+     
                             
-                            
-                            <?php echo $data->namappk?><br>
-                            Nip.   <?php echo $data->nip?>            
-                            
-                            
+        
                             
                             
                         </td>
@@ -56,8 +74,8 @@
                           
                           
                       </td>
-                      <td>  Berangkat dari :  <br>
-                            (Tempat Kedudukan ) : <?php echo $data->namakota;?> <br>
+                      <td>  Berangkat dari :  
+                          <?php echo $data->namakota;?> <br>
                             Ke : <?php echo $data->kota;?> <br>
                             Pada Tanggal : <?php echo tgl_indo($data->tgl_pulang);?> <br>
                             Kepala <br><br><br><br>
@@ -105,7 +123,7 @@
                 
 <tr>
                       <td>V.Tiba di  :<br>
-                            Pada Tanggal : 04 September 2015 <br>
+                            Pada Tanggal :  <br>
                             Kepala<br>
                             
                                                  
@@ -153,13 +171,26 @@
  
  
  </tr>
+ <tr>
+                      <td>VII.Catatan Lain<br>
+                            
+                            
+                                                 
+                          
+                      
+                      </td>
+                      <td>
+                         
+                            
+                            </td>
+                  </tr>
        
                   </tbody></table>
   
       
      
         <br>
-        VII. PERHATIAN </p>
+        VIII. PERHATIAN </p>
         PPK yang menerbitkan SPD, pegawai yang melakukan perjalanan dinas, para pejabat yang mengesahkan tanggal berangkat/tiba,serta bendahara pengeluaran bertanggung jawab berdasarkan 
         perarturan-peraturan keuangan negara apabila negara menderita rugi akibat kesalahan,kelalaian, dan kealpaannya <br> <br> <br>
     <a href="<?php echo base_url('index.php/printsurat/cetakspd3/'.$data->id)?>" target="_blank" class="btn btn-primary"><i class="fa fa-print"></i> Print SPD Halaman 2</a>

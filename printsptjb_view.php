@@ -78,16 +78,36 @@
      
       
             <hr> <h5 style="text-align:center">SURAT PERNYATAAN TANGGUNG JAWAB BELANJA </h5>
-            <h5 style="text-align:center">   Nomor  <?php echo $data->no_lampiran;?> </h5>
+            <h5 style="text-align:center">   Nomor  : Kw.29.<?php 
+            
+            
+            
+            
+            echo $data->kode_satker?>/<?php echo $data->idsubbag ?>/Kp.01.2/
+
+             <?php if($data->no_sptjb != ""){
+                echo $data->no_sptjb;}
+                else{
+              echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+                }
+
+             ?>
+
+         /2016 </h5>
                      <div class="row">
             <div class="col-xs-12 table-responsive">
          
 
 
-                <p>    1.   Kode Satuan Kerja 		: <?php echo $data->idsatker ;?> <br>
+                <p>
+                1.   Kode Satuan Kerja	        : <?php echo $data->idsatker ;?> <br>
                 2.   Nama Satuan Kerja 		: Kanwil Kementerian Agama Prop. Kep. Bangka Belitung <br>
                 3.   Tanggal / No. DIPA		: <?php echo $data->no_dipa ;?> <br> 
-                4.   Klasifikasi Anggaran	: 01/03/01/<?php echo substr($data->program_id,0,4);?>/<?php echo substr($data->program_id,4,7);?>/5241 <br><br>
+                4.   Klasifikasi Anggaran	: <?php echo $data->mataanggaran;?> <br>
+                
+                <!--
+                01/03/01/<?php echo substr($data->program_id,0,4);?>/<?php echo substr($data->program_id,4,7);?>/5241 <br><br>
+               -->
                 </p>
           
           <p > Yang bertanda tangan di bawah ini atas nama Kuasa Pengguna Anggaran Satuan Kerja Kantor Wilayah Kementerian Agama Prop. 
@@ -140,7 +160,9 @@ foreach ($printkota as $kota){
                   <td> <p>Biaya Perjalanan Dinas Ke <?php echo ($kota->namakota); ?> sebanyak <?php echo  $orang ;?> orang  
                       <?php echo tgl_indo($data->tgl_pergi); ?> -
                             <?php echo tgl_indo($data->tgl_pulang); ?>,
-                            dalam rangka  <?php echo $data->namasubkegiatans ;?>  di <?php echo $data->tempat ;?> berdasarkan SPD nomor <?php echo $data->no_spd;?> 
+                            dalam rangka  <?php echo $data->namasubkegiatans ;?>  di <?php echo $data->tempat ;?> berdasarkan SPD nomor Kw.29.
+                                <?php echo $data->kode_satker ;?>/<?php echo $data->idsubbag ;?>/KU.01.2/                                
+                                <?php echo $data->no_spd;?>/2016 
                      </p></td>
                   <td>  <p><?php echo rupiah2($total); ?> </p></td>
                   <td> </td>

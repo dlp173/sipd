@@ -169,17 +169,22 @@
                     foreach ($printperintah as $pejabat) {
                     }
                                     ?>
-<?php echo "$pejabat->pelimpahan";
-
-?>
-<br>
+    
+ <?php if ($pejabat->pelimpahan != 'Kepala'){
+        
+         echo $pejabat->pelimpahan;
+         echo "<br>";
+         echo $pejabat->jabatan;
+    } else if ($pejabat->pelimpahan === 'Kepala'){
+        echo $pejabat->pelimpahan;
+       
+    }
+    ?>
 <br>
 <br>
 <br>
  
-<?php echo "$pejabat->jabatan";
 
-?>
 <br>
 						          
 

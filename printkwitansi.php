@@ -155,7 +155,9 @@
                     Pangkalpinang, <?php echo tgl_indo(date("Y-m-d"));?><br>Penerima </br> <br><br><br>
                     
                     
-                    <?php echo $data->nama ;?> 
+                    <?php echo $data->nama ;?> <br>
+
+                    <?php echo $data->nippeg ;?>  
        
                    
             </div>
