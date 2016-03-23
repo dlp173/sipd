@@ -1,0 +1,31 @@
+table, td, th {
+    border: 1px solid grey;
+    padding: 1px;
+    margin: 1px;
+}
+
+th {
+    background-color: grey;
+     padding: 1px;
+    margin: 1px;
+    color: white;
+}
+p.ex {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-right: 150px;
+    margin-left: 50px;
+}
+
+div #img{
+    
+    width:50;
+    height:50;
+     border: 3px solid #0044cc;
+}
+div #kop{
+    
+    width:500;
+    
+     border: 3px solid #0044cc;
+}
